@@ -24,6 +24,10 @@ const RegisterSchema = new mongoose.Schema({
     shoesSize: {
         type: String,
         required: true
+    },
+    adoptable: {
+        type: Boolean,
+        default: false
     }
 });
 

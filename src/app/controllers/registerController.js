@@ -5,8 +5,13 @@ const Register = require('../models/registers');
 
 router.use(authMiddleWare);
 
-router.get('/' , (req, res) => {
-    res.send({ok: true, user: req.userId});
+router.get('/' , async (req, res) => {
+    try {
+        const register = await Register.find().select(["-__v"]);
+        res.send({ register });
+    } catch(err) {
+        return res.status(400).send({ error: err.message});
+    }
 });
 
 // cadastrar disponíveis para adoção
